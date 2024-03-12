@@ -21,6 +21,36 @@ def foreachLine(lines):
 
     return result
 
+def splitSingle(lines):
+    # 存储结果  蒙古,#genre#
+    result = []
+    count = 0
+    # 遍历每一行
+    for line in lines:
+        if "#genre#" in line:
+            # 定义输出文件
+            count += 1
+            if len(result) > 0:
+                # 写入输出文件
+                with open(fileName, "w", encoding="utf-8") as f:
+                    f.writelines(result)
+                    f.flush()
+                    f.close()
+                result.clear()
+            if count <= 9:
+                fileName = "0"+str(count) + " " + line.split(",")[0].strip() +".txt"
+            else:
+                fileName = str(count) + " " + line.split(",")[0].strip() +".txt"
+        else:
+            result.append(line)
+
+    if len(result) > 0:
+        # 写入输出文件
+        with open(fileName, "w", encoding="utf-8") as f:
+            f.writelines(result)
+            f.flush()
+            f.close()
+        result.clear()
 
 if __name__ == '__main__':
     print('work start ...\n')
@@ -44,7 +74,8 @@ if __name__ == '__main__':
             f.writelines(result)
             f.flush()
             f.close()
-        
+        if fileIndex == 0:
+            splitSingle(result)
         print('handler file finished: + '+src_file + '\n')
 
     print("All finished!")
