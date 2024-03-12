@@ -1,3 +1,10 @@
+
+自己的免密码源：
+
+https://agit.ai/397260863/1/raw/branch/master/0.txt
+
+
+
 原维护网址
 https://agit.ai/397260863/1
 0-3是clone,2024-2-28
